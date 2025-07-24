@@ -116,7 +116,7 @@ Frontend will run on: `http://localhost:5173`
 
 ## 📜 License
 
-This project is licensed under the **MIT License**. You are free to use, modify, and distribute.
+This project is licensed under the **MIT License**.
 
 ---
 
