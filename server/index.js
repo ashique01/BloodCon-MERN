@@ -19,7 +19,7 @@ const app = express();
 
 // Allowed frontend origins
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'https://bdbloodbox.netlify.app',
+  process.env.CLIENT_URL || 'https://localhost:5173',
 ];
 
 // CORS middleware
