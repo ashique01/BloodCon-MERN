@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Global Styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply font-sans antialiased;
+    /* Ensure smooth transitions for theme changes */
+    @apply transition-colors duration-300 ease-in-out;
+  }
+}
+
+/* You can add custom components or utilities here if needed */
+/* For example, a custom button style not covered by Tailwind's defaults */
+/*
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors;
+  }
+}
+*/
