@@ -22,7 +22,7 @@ const Footer = () => {
             Connecting compassionate donors with patients in urgent need. We believe in a healthier Bangladesh, one donation at a time.
           </p>
           <p className={`mt-4 text-xs ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
-            &copy; {new Date().getFullYear()} BloodLink. All rights reserved.
+            &copy; {new Date().getFullYear()} BloodCon. All rights reserved.
           </p>
         </div>
 
