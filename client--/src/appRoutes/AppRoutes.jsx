@@ -12,6 +12,7 @@ import RequestBloodForSomeoneElsePage from '../pages/RequestBloodForSomeoneElseP
 import RecentBloodRequestsPage from '../pages/RecentBloodRequestsPage';
 import DonorDetailsPage from '../pages/DonorDetailsPage'; // Import the new DonorDetailsPage
 import ProtectedRoute from '../components/ProtectedRoute';
+import NotFound from '../components/NotFound';
 
 const AppRoutes = () => {
   return (
@@ -89,6 +90,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
