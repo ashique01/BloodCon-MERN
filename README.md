@@ -120,8 +120,3 @@ This project is licensed under the **MIT License**. You are free to use, modify,
 
 ---
 
-## 📢 Contributing
-
-Feel free to fork the repo, open issues, or submit pull requests. Contributions are welcome!
-
-```
