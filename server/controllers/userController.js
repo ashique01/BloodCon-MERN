@@ -196,8 +196,15 @@ exports.getAllDonors = async (req, res) => {
 exports.getDonorById = async (req, res) => {
   try {
     const donor = await User.findById(req.params.id).select("-password");
-    if (!donor || donor.isAdmin)
+    if (!donor || donor.isAdmin) {
       return res.status(404).json({ message: "Donor not found" });
+    }
+
+    // Log authenticated user info
+    console.log("getDonorById: requester:", {
+      requesterId: req.user._id,
+      isAdmin: req.user.isAdmin
+    });
 
     const isOwner = req.user._id.toString() === donor._id.toString();
     const isAdmin = req.user.isAdmin;
@@ -212,12 +219,16 @@ exports.getDonorById = async (req, res) => {
       availableToDonate: donor.availableToDonate,
     };
 
-    // Reveal email and phone only if requester is admin or the donor themselves
+    // Reveal only if admin or the owner themselves
     if (isAdmin || isOwner) {
       responseData.email = donor.email;
       responseData.phone = donor.phone;
+    } else {
+      responseData.email = "Private";
+      responseData.phone = "Private";
     }
 
+    console.log("getDonorById: returning:", responseData);
     res.json(responseData);
   } catch (err) {
     console.error("Error fetching donor by ID:", err);
@@ -227,6 +238,7 @@ exports.getDonorById = async (req, res) => {
     res.status(500).json({ message: "Server error while fetching donor details." });
   }
 };
+
 
 // @desc    Get count of users (with filters)
 // @route   GET /api/users/count?available=true|false&admin=true&newMonth=true
