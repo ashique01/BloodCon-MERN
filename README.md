@@ -32,7 +32,6 @@
 ## 🔗 Live Demo
 
 [🚀 Visit Live App](https://bdbloodbox.netlify.app/)  
-*(Replace with actual deployment link)*
 
 ---
 
