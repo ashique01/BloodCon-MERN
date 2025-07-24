@@ -200,15 +200,6 @@ exports.getDonorById = async (req, res) => {
       return res.status(404).json({ message: "Donor not found" });
     }
 
-    // Log authenticated user info
-    console.log("getDonorById: requester:", {
-      requesterId: req.user._id,
-      isAdmin: req.user.isAdmin
-    });
-
-    const isOwner = req.user._id.toString() === donor._id.toString();
-    const isAdmin = req.user.isAdmin;
-
     const responseData = {
       _id: donor._id,
       name: donor.name,
@@ -217,18 +208,10 @@ exports.getDonorById = async (req, res) => {
       city: donor.city,
       address: donor.address,
       availableToDonate: donor.availableToDonate,
+      email: donor.email,         // Always shown
+      phone: donor.phone          // Always shown
     };
 
-    // Reveal only if admin or the owner themselves
-    if (isAdmin || isOwner) {
-      responseData.email = donor.email;
-      responseData.phone = donor.phone;
-    } else {
-      responseData.email = "Private";
-      responseData.phone = "Private";
-    }
-
-    console.log("getDonorById: returning:", responseData);
     res.json(responseData);
   } catch (err) {
     console.error("Error fetching donor by ID:", err);
@@ -238,6 +221,7 @@ exports.getDonorById = async (req, res) => {
     res.status(500).json({ message: "Server error while fetching donor details." });
   }
 };
+
 
 
 // @desc    Get count of users (with filters)
