@@ -19,18 +19,17 @@ const allowedOrigins = [
   process.env.CLIENT_URL || 'http://localhost:5173',
 ];
 
-// ✅ CORS setup
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-}));
-app.use(express.json()); // Parses incoming JSON requests
+}))
 
 // API Routes
 app.use('/api/users', userRoutes);
