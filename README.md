@@ -31,14 +31,8 @@
 
 ## 🔗 Live Demo
 
-[🚀 Visit Live App](https://your-demo-link.com)  
+[🚀 Visit Live App](https://bdbloodbox.netlify.app/)  
 *(Replace with actual deployment link)*
-
----
-
-## 🖥️ Screenshots *(Optional)*
-
-> _Add screenshots here if available (UI, Donor Cards, Forms, Admin Panel, etc.)_
 
 ---
 
@@ -117,7 +111,7 @@ Frontend will run on: `http://localhost:5173`
 
 **Developer:** Ashique Murad
 📧 Email: [ashiquemurad@gmail.com](mailto:ashiquemurad@gmail.com)
-🌐 GitHub: [Ashique01](https://github.com/Ashique01)
+🌐 GitHub: [Ashique01](https://github.com/ashique01)
 
 ---
 
