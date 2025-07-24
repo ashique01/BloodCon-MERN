@@ -9,37 +9,30 @@ const adminUserRoutes = require('./routes/adminUserRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 dotenv.config();
-
 connectDB();
 
 const app = express();
 
+// Middleware
+app.use(express.json());
+
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'https://localhost:5173',
+  'http://localhost:5173',
+  'https://bdbloodbox.netlify.app'
 ];
 
-const corsOptions = {
+// ✅ CORS setup
+app.use(cors({
   origin: function (origin, callback) {
-
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log('❌ Blocked by CORS:', origin);
-     
-      callback(null, false);
+      callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-  optionsSuccessStatus: 200, 
-};
+}));
 
-app.use(cors(corsOptions));
-
-
-
-app.use(express.json());
 
 app.use('/api/users', userRoutes);
 app.use('/api/requests', requestRoutes);
@@ -52,6 +45,14 @@ app.get('/', (req, res) => {
 
 app.use(notFound);
 app.use(errorHandler);
+
+// Optional CORS error handler to send proper response
+app.use((err, req, res, next) => {
+  if (err.message === 'Not allowed by CORS') {
+    return res.status(403).json({ message: 'CORS error: Not allowed' });
+  }
+  next(err);
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
