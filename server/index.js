@@ -9,8 +9,6 @@ const adminUserRoutes = require('./routes/adminUserRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 dotenv.config();
-
-// Connect to MongoDB
 connectDB();
 
 const app = express();
@@ -29,25 +27,28 @@ app.use(cors({
     }
   },
   credentials: true,
-}))
+}));
 
-// API Routes
+app.options('*', cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
+app.use(express.json());
+
 app.use('/api/users', userRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/admin/users', adminUserRoutes);
 
-// Root Endpoint
 app.get('/', (req, res) => {
   res.send('Blood Donation API is running...');
 });
 
-// Error Handling Middleware (404 and general errors)
 app.use(notFound);
 app.use(errorHandler);
 
-// Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running in on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
