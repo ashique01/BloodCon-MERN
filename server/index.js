@@ -16,7 +16,7 @@ connectDB();
 const app = express();
 
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:5173',
+  process.env.CLIENT_URL || 'https://bdbloodbox.netlify.app',
 ];
 
 app.use(cors({
